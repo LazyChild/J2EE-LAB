@@ -9,12 +9,12 @@
     <form action="TestProcess" method="post">
     <h2>一、填空题：</h2>
     <p>
-                现在的复旦校长姓名？ <input type="text" name="name" />
+        现在的复旦校长姓名？ <input type="text" name="name" />
     </p>
     
     <h2>二、单选题：</h2>
     <p>
-                你在哪个校区？
+        你在哪个校区？
         <input type="radio" name="campus" value="handan" />邯郸
         <input type="radio" name="campus" value="zhangjiang" />张江
         <input type="radio" name="campus" value="jiangwan" />江湾
@@ -31,7 +31,7 @@
     
     <h2>四、判断题：</h2>
     <p>
-                    学了Java Web编程是否有用？
+        学了Java Web编程是否有用？
         <input type="text" name="judge" />(T 或 F)
     </p>
     <input type="submit" value="提交"/>
