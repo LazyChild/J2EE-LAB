@@ -66,4 +66,14 @@
     <filter-name>AuthorityFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetSourceServlet</display-name>
+    <servlet-name>GetSourceServlet</servlet-name>
+    <servlet-class>com.ryliu.j2ee.hw01.GetSourceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetSourceServlet</servlet-name>
+    <url-pattern>/GetSourceServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

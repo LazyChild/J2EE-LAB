@@ -20,8 +20,8 @@ public class TestProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // set encoding
-        request.setCharacterEncoding("GB2312");
-        response.setContentType("text/plain;charset=GB2312");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain;charset=UTF-8");
 
         // calculate score
         int score = 0;

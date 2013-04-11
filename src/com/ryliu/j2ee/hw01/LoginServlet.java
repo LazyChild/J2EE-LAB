@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (USER_NAME.equals(request.getParameter("username")) && PASSWORD.equals(request.getParameter("password"))) {
             HttpSession session = request.getSession(true);
-            session.setAttribute("accessToken", "je1124061");
+            session.setAttribute("accessToken", USER_NAME);
             session.setMaxInactiveInterval(-1);
             response.sendRedirect("index.jsp");
         } else {

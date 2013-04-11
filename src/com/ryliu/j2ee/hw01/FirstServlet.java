@@ -20,7 +20,7 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // set encoding
-        response.setContentType("text/plain;charset=GB2312");
+        response.setContentType("text/plain;charset=UTF-8");
 
         // output info
         PrintWriter writer = response.getWriter();

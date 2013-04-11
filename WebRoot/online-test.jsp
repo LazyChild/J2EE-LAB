@@ -2,41 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JavaEE Homework</title>
+<title>JavaEE Lab</title>
 </head>
 <body>
     <h1>Online Test</h1>
     <form action="TestProcess" method="post">
-    <h2>一、简答题</h2>
+    <h2>一、填空题：</h2>
     <p>
-        复旦现任校长是？
-        <input type="text" name="name" />
+                现在的复旦校长姓名？ <input type="text" name="name" />
     </p>
     
-    <h2>¶þ¡¢µ¥Ñ¡Ìâ£º</h2>
+    <h2>二、单选题：</h2>
     <p>
-        ÄãÔÚÄÄ¸öÐ£Çø£¿
-        <input type="radio" name="campus" value="handan" />ºªµ¦
-        <input type="radio" name="campus" value="zhangjiang" />ÕÅ½­
-        <input type="radio" name="campus" value="jiangwan" />½­Íå
+                你在哪个校区？
+        <input type="radio" name="campus" value="handan" />邯郸
+        <input type="radio" name="campus" value="zhangjiang" />张江
+        <input type="radio" name="campus" value="jiangwan" />江湾
     </p>
     
-    <h2>Èý¡¢¶àÑ¡Ìâ£º</h2>
+    <h2>三、多选题：</h2>
     <p>
-        Java Web±à³ÌÒÑÑ§¹ýÊ²Ã´£¿
+        Java Web编程已学过什么？
         <input type="checkbox" name="techs" value="servlet" />Servlet
         <input type="checkbox" name="techs" value="jsp" />JSP
         <input type="checkbox" name="techs" value="java_bean" />Java Bean
         <input type="checkbox" name="techs" value="java_mail" />Java Mail
     </p>
     
-    <h2>ËÄ¡¢ÅÐ¶ÏÌâ£º</h2>
+    <h2>四、判断题：</h2>
     <p>
-        Ñ§ÁËJava Web±à³ÌÊÇ·ñÓÐÓÃ£¿
-        <input type="text" name="judge" />(T »ò F)
+                    学了Java Web编程是否有用？
+        <input type="text" name="judge" />(T 或 F)
     </p>
-    <input type="submit" value="Ìá½»"/>
-    <input type="reset" value="ÖØÖÃ"/>
+    <input type="submit" value="提交"/>
+    <input type="reset" value="重置"/>
     </form>
 </body>
 </html>

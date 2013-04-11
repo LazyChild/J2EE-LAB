@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
+<meta charset="UTF-8">
 <title>JavaEE Homework</title>
 </head>
 <body>

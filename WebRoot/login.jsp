@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JavaEE Homework</title>
+<title>JavaEE Lab</title>
 </head>
 <body>
 <h1>登录</h1>
