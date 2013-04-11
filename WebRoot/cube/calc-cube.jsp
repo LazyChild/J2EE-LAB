@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=GB2312"
-    pageEncoding="GB2312"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
+<meta charset="UTF-8">
 <title>JavaEE Homework</title>
 </head>
 <body>

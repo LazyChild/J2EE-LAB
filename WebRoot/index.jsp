@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=GB2312"
-    pageEncoding="GB2312"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
+<meta charset="UTF-8">
 <title>JavaEE Homework</title>
 </head>
 <body>
 	<h1>JavaEE Homework</h1>
 	<table>
 		<tr>
-			<th>题号</th>
-			<th>演示</th>
-			<th>源代码</th>
+			<th>棰樺彿</th>
+			<th>婕旂ず</th>
+			<th>婧愪唬鐮�</th>
 		</tr>
 		<tr>
 			<td>1.2</td>

@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
+<meta charset="UTF-8">
 <title>JavaEE Homework</title>
 </head>
 <body>
 	<h1>Online Test</h1>
 	<form action="TestProcess" method="post">
-	<h2>一、填空题：</h2>
+	<h2>涓�銆佺畝绛旈</h2>
 	<p>
-		现在的复旦校长姓名？
+		澶嶆棪鐜颁换鏍￠暱鏄紵
 		<input type="text" name="name" />
 	</p>
 	
-	<h2>二、单选题：</h2>
+	<h2>露镁隆垄碌楼脩隆脤芒拢潞</h2>
 	<p>
-		你在哪个校区？
-		<input type="radio" name="campus" value="handan" />邯郸
-		<input type="radio" name="campus" value="zhangjiang" />张江
-		<input type="radio" name="campus" value="jiangwan" />江湾
+		脛茫脭脷脛脛赂枚脨拢脟酶拢驴
+		<input type="radio" name="campus" value="handan" />潞陋碌娄
+		<input type="radio" name="campus" value="zhangjiang" />脮脜陆颅
+		<input type="radio" name="campus" value="jiangwan" />陆颅脥氓
 	</p>
 	
-	<h2>三、多选题：</h2>
+	<h2>脠媒隆垄露脿脩隆脤芒拢潞</h2>
 	<p>
-		Java Web编程已学过什么？
+		Java Web卤脿鲁脤脪脩脩搂鹿媒脢虏脙麓拢驴
 		<input type="checkbox" name="techs" value="servlet" />Servlet
 		<input type="checkbox" name="techs" value="jsp" />JSP
 		<input type="checkbox" name="techs" value="java_bean" />Java Bean
 		<input type="checkbox" name="techs" value="java_mail" />Java Mail
 	</p>
 	
-	<h2>四、判断题：</h2>
+	<h2>脣脛隆垄脜脨露脧脤芒拢潞</h2>
 	<p>
-		学了Java Web编程是否有用？
-		<input type="text" name="judge" />(T 或 F)
+		脩搂脕脣Java Web卤脿鲁脤脢脟路帽脫脨脫脙拢驴
+		<input type="text" name="judge" />(T 禄貌 F)
 	</p>
-	<input type="submit" value="提交"/>
-	<input type="reset" value="重置"/>
+	<input type="submit" value="脤谩陆禄"/>
+	<input type="reset" value="脰脴脰脙"/>
 	</form>
 </body>
 </html>
