@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ChatroomChat
  */
 public class ChatroomChat extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -22,36 +22,38 @@ public class ChatroomChat extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("GB2312");
-		
-		// get parameters
-		String username = request.getParameter("username");
-		String text = request.getParameter("text");
-		
-		// add message
-		addMessage(username + ": " + text);
-		
-		// send redirect
-		response.sendRedirect("chatroom.jsp");
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("GB2312");
 
-	/**
-	 * Add message to servlet context.
-	 * 
-	 * @param message the message
-	 */
-	@SuppressWarnings("unchecked")
-	private void addMessage(String message) {
-		List<String> messages = (List<String>) getServletContext().getAttribute("messages");
-		if (messages == null) {
-			messages = new ArrayList<String>();
-		}
-		messages.add(message);
-		getServletContext().setAttribute("messages", messages);
-	}
+        // get parameters
+        String username = request.getParameter("username");
+        String text = request.getParameter("text");
+
+        // add message
+        addMessage(username + ": " + text);
+
+        // send redirect
+        response.sendRedirect("chatroom.jsp");
+    }
+
+    /**
+     * Add message to servlet context.
+     *
+     * @param message
+     *            the message
+     */
+    @SuppressWarnings("unchecked")
+    private void addMessage(String message) {
+        List<String> messages = (List<String>) getServletContext().getAttribute("messages");
+        if (messages == null) {
+            messages = new ArrayList<String>();
+        }
+        messages.add(message);
+        getServletContext().setAttribute("messages", messages);
+    }
 
 }

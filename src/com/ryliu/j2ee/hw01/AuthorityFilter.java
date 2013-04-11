@@ -17,45 +17,48 @@ import javax.servlet.http.HttpSession;
 public class AuthorityFilter implements Filter {
 
     /**
-     * Default constructor. 
+     * Default constructor.
      */
     public AuthorityFilter() {
-    	// empty
+        // empty
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// empty
-	}
+    /**
+     * @see Filter#destroy()
+     */
+    @Override
+    public void destroy() {
+        // empty
+    }
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		
-		if (request.getRequestURI().startsWith(request.getContextPath() + "/login")) {
-			chain.doFilter(request, response);
-		} else {
-			HttpSession session = request.getSession(false);
-			if (null == session || session.getAttribute("accessToken") == null
-					|| !"je1124061".equals(session.getAttribute("accessToken"))) {
-				response.sendRedirect(request.getContextPath() + "/login.jsp");
-			} else {
-				// pass the request along the filter chain
-				chain.doFilter(request, response);
-			}
-		}
-	}
+    /**
+     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+     */
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// empty
-	}
+        if (request.getRequestURI().startsWith(request.getContextPath() + "/login")) {
+            chain.doFilter(request, response);
+        } else {
+            HttpSession session = request.getSession(false);
+            if (null == session || session.getAttribute("accessToken") == null
+                    || !"je1124061".equals(session.getAttribute("accessToken"))) {
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+            } else {
+                // pass the request along the filter chain
+                chain.doFilter(request, response);
+            }
+        }
+    }
+
+    /**
+     * @see Filter#init(FilterConfig)
+     */
+    @Override
+    public void init(FilterConfig fConfig) throws ServletException {
+        // empty
+    }
 
 }

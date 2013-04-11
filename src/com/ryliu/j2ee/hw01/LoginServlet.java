@@ -11,18 +11,18 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Represents the login user name.
-	 */
-	private static final String USER_NAME = "je1124061";
+    /**
+     * Represents the login user name.
+     */
+    private static final String USER_NAME = "je1124061";
 
-	/**
-	 * Represents the login password.
-	 */
-	private static final String PASSWORD = "283245";
-       
+    /**
+     * Represents the login password.
+     */
+    private static final String PASSWORD = "283245";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,19 +30,19 @@ public class LoginServlet extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (USER_NAME.equals(request.getParameter("username"))
-				&& PASSWORD.equals(request.getParameter("password"))) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("accessToken", "je1124061");
-			session.setMaxInactiveInterval(-1);
-			response.sendRedirect("index.jsp");
-		} else {
-			response.sendRedirect("login.jsp?error=true");
-		}
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (USER_NAME.equals(request.getParameter("username")) && PASSWORD.equals(request.getParameter("password"))) {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("accessToken", "je1124061");
+            session.setMaxInactiveInterval(-1);
+            response.sendRedirect("index.jsp");
+        } else {
+            response.sendRedirect("login.jsp?error=true");
+        }
+    }
 
 }

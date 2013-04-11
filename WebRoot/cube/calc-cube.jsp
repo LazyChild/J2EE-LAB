@@ -8,7 +8,7 @@
 </head>
 <body>
     <jsp:forward page="show-cube.jsp">
-    	<jsp:param name="value" value='<%= request.getParameter("value")%>'/>
+        <jsp:param name="value" value='<%= request.getParameter("value")%>'/>
     </jsp:forward>
 </body>
 </html>

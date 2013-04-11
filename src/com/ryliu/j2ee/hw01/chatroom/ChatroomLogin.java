@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class ChatroomLogin
  */
 public class ChatroomLogin extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -20,15 +20,16 @@ public class ChatroomLogin extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("GB2312");
-		HttpSession session = request.getSession(true);
-		session.setAttribute("username", request.getParameter("username"));
-		session.setMaxInactiveInterval(6000);
-		response.sendRedirect("chatroom.jsp");
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("GB2312");
+        HttpSession session = request.getSession(true);
+        session.setAttribute("username", request.getParameter("username"));
+        session.setMaxInactiveInterval(6000);
+        response.sendRedirect("chatroom.jsp");
+    }
 
 }

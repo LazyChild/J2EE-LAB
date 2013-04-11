@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FirstServlet
  */
 public class FirstServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// set encoding
-		response.setContentType("text/plain;charset=GB2312");
-		
-		// output info
-		PrintWriter writer = response.getWriter();
-		writer.println("我的第一个Java Servlet");
-		writer.println("11300240061 刘仁宇");
-		writer.println("欢迎使用本系统。");
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // set encoding
+        response.setContentType("text/plain;charset=GB2312");
+
+        // output info
+        PrintWriter writer = response.getWriter();
+        writer.println("我的第一个Java Servlet");
+        writer.println("11300240061 刘仁宇");
+        writer.println("欢迎使用本系统。");
+    }
 
 }
