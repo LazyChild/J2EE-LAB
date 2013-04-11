@@ -4,25 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JavaEE Lab</title>
+<%@ include file="/include/header.jsp" %>
 </head>
 <body>
-    <h1>欢迎使用聊天室</h1>
-    <p>您好，${sessionScope.username }</p>
+<%@ include file="/include/navbar.jsp" %>
+<div class="container">
+    <h2>您好，${sessionScope.username }</h2>
     
     <%
         Set<HttpSession> sessions = (Set<HttpSession>) application.getAttribute("sessions");
         List<String> messages = (List<String>) application.getAttribute("messages");
     %>
-    <h2>当前在线用户数 <%= sessions.size()%> </h2>
+    <h2>当前在线用户数 <%= sessions == null ? 0 : sessions.size()%> </h2>
     <p>用户列表：</p>
     
     <%
         out.println("<ul>");
-        for (HttpSession s : sessions) {
-            out.println("<li>" + s.getAttribute("username") + "</li>");
-        }
+	    if (sessions != null) {
+	        for (HttpSession s : sessions) {
+	            out.println("<li>" + s.getAttribute("username") + "</li>");
+	        }
+	    }
         out.println("</ul>");
     %>
     
@@ -34,10 +36,11 @@
             }
         }
     %>
-    <form action="ChatroomChat" method="post">
-        <input name="text"/>
-        <input type="hidden" name="username" value="${sessionScope.username }"/>
-        <input type="submit" value="发送"/>
+    <form action="chatroom/ChatroomChat" method="post">
+        <input type="text" name="text" placeholder="talk here..."/>
+        <input type="hidden" name="username" value="${sessionScope.username}"/>
+        <button type="submit" class="btn btn-primary">发送</button>
     </form>
+</div>
 </body>
 </html>

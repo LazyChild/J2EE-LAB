@@ -3,15 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JavaEE Lab</title>
+<%@ include file="/include/header.jsp" %>
 </head>
 <body>
+<%@ include file="/include/navbar.jsp" %>
+<div class="container">
     <h1>JavaEE Lab</h1>
     <p>
         为了方便版本控制，本实验全部代码托管于<a href="http://github.com">github.com</a>。查看源码时请确保本机环境可以正常访问。
     </p>
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>题号</th>
             <th>演示</th>
@@ -59,9 +60,10 @@
             <td><a href="GetSourceServlet?file=login.jsp">login.jsp</a> | 
             <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.LoginServlet">LoginServlet.java</a> | 
             <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.AuthorityFilter">AuthorityFilter.java</a> |
-            <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.GetSourceServlet">GetSourceServlet.java</a> |    
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.GetSourceServlet">GetSourceServlet.java</a>  
             </td>
         </tr>
     </table>
+</div>
 </body>
 </html>

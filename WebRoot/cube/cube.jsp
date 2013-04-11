@@ -3,15 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JavaEE Homework</title>
+<%@ include file="/include/header.jsp" %>
 </head>
 <body>
-    <h1>计算立方</h1>
-    <form action="calc-cube.jsp">
-        <p><input type="text" name="value"/></p>
-        <p><input type="submit" value="提交"/>
-        <input type="reset" value="重置"/></p>
+<%@ include file="/include/navbar.jsp" %>
+<div class="container">
+    <form action="cube/calc-cube.jsp">
+        <fieldset>
+        <legend>计算立方</legend>
+        <input type="text" name="value" placeholder="Please input value"/>
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="reset" class="btn">重置</button>
+        </fieldset>
     </form>
+</div>
 </body>
 </html>

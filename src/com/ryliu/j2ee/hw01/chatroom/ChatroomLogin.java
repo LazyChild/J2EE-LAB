@@ -25,7 +25,7 @@ public class ChatroomLogin extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("GB2312");
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         session.setAttribute("username", request.getParameter("username"));
         session.setMaxInactiveInterval(6000);

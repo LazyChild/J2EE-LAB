@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JavaEE Homework</title>
+<%@ include file="/include/header.jsp" %>
 </head>
 <body>
-    <jsp:forward page="show-cube.jsp">
+    <jsp:forward page="/cube/show-cube.jsp">
         <jsp:param name="value" value='<%= request.getParameter("value")%>'/>
     </jsp:forward>
 </body>

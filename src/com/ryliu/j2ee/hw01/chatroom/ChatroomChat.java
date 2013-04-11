@@ -27,7 +27,7 @@ public class ChatroomChat extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("GB2312");
+        request.setCharacterEncoding("UTF-8");
 
         // get parameters
         String username = request.getParameter("username");

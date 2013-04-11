@@ -1,13 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JavaEE Homework</title>
+<%@ include file="/include/header.jsp" %>
 </head>
 <body>
-    <form action="ChatroomLogin" method="post">
-        <p>用户名<input type="text" name="username"/></p>
-        <input type="submit" value="登录"/>
+<%@ include file="/include/navbar.jsp" %>
+<div class="container">
+    <form action="chatroom/ChatroomLogin" method="post" class="form-signin">
+        <fieldset>
+	        <legend>登录聊天室：</legend>
+	        <input type="text" name="username" placeholder="用户名"/>
+	        <button type="submit" class="btn btn-primary">登录</button>
+        </fieldset>
     </form>
+</div>
 </body>
 </html>
