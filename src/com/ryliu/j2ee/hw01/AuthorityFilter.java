@@ -41,8 +41,7 @@ public class AuthorityFilter implements Filter {
 
         String url = request.getRequestURI();
         String basePath = request.getContextPath();
-        if (url.startsWith(basePath + "/login") || url.startsWith(basePath + "/css")
-                || url.startsWith(basePath + "/js") || url.startsWith(basePath + "/about")) {
+        if (!url.startsWith(basePath + "/GetSourceServlet")) {
             chain.doFilter(request, response);
         } else {
             HttpSession session = request.getSession(false);
