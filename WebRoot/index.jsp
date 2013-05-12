@@ -10,7 +10,6 @@
 <div class="container">
     <h1>JavaEE Lab</h1>
     <p>
-        为了方便版本控制，本实验全部代码托管于<a href="http://github.com">github.com</a>。查看源码时请确保本机环境可以正常访问。
     </p>
     <table class="table table-striped">
         <tr>

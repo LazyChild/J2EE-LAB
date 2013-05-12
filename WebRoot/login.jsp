@@ -11,7 +11,7 @@
 <form action="login" method="post" class="form-signin">
 <fieldset>
     <legend>登录</legend>
-    <p><input type="text" name="username" placeholder="用户名"/></p>
+    <p><input type="text" name="username" value="je1124061"/></p>
     <p><input type="password" name="password" placeholder="密码"/></p>
     <%
         if (null != request.getParameter("error") && "true".equals(request.getParameter("error"))) {
