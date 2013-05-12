@@ -59,8 +59,17 @@
             <td><a href="GetSourceServlet?file=login.jsp">login.jsp</a> | 
             <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.LoginServlet">LoginServlet.java</a> | 
             <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.AuthorityFilter">AuthorityFilter.java</a> |
-            <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.GetSourceServlet">GetSourceServlet.java</a>  
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.hw01.GetSourceServlet">GetSourceServlet.java</a> |
+            <a href="GetSourceServlet?file=WEB-INF/jsp/show_code.jsp">show_code.jsp</a>
             </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>N/A</td>
+            <td></td>
         </tr>
     </table>
 </div>
