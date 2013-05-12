@@ -1,4 +1,4 @@
-package com.ryliu.j2ee.hw01.chatroom;
+package com.ryliu.j2ee.lab01.chatroom;
 
 import java.util.HashSet;
 import java.util.Set;

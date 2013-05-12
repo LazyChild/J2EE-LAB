@@ -8,7 +8,7 @@
     <description></description>
     <display-name>FirstServlet</display-name>
     <servlet-name>FirstServlet</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.FirstServlet</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.FirstServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FirstServlet</servlet-name>
@@ -18,40 +18,40 @@
     <description></description>
     <display-name>TestProcess</display-name>
     <servlet-name>TestProcess</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.TestProcess</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.TestProcess</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestProcess</servlet-name>
     <url-pattern>/TestProcess</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>com.ryliu.j2ee.hw01.chatroom.MySessionListener</listener-class>
+    <listener-class>com.ryliu.j2ee.lab01.chatroom.MySessionListener</listener-class>
   </listener>
   <servlet>
     <description></description>
     <display-name>ChatroomLogin</display-name>
     <servlet-name>ChatroomLogin</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.chatroom.ChatroomLogin</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.chatroom.ChatroomLogin</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ChatroomLogin</servlet-name>
-    <url-pattern>/chatroom/ChatroomLogin</url-pattern>
+    <url-pattern>/lab01/chatroom/ChatroomLogin</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>ChatroomChat</display-name>
     <servlet-name>ChatroomChat</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.chatroom.ChatroomChat</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.chatroom.ChatroomChat</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ChatroomChat</servlet-name>
-    <url-pattern>/chatroom/ChatroomChat</url-pattern>
+    <url-pattern>/lab01/chatroom/ChatroomChat</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.LoginServlet</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -60,7 +60,7 @@
   <filter>
     <display-name>AuthorityFilter</display-name>
     <filter-name>AuthorityFilter</filter-name>
-    <filter-class>com.ryliu.j2ee.hw01.AuthorityFilter</filter-class>
+    <filter-class>com.ryliu.j2ee.lab01.AuthorityFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AuthorityFilter</filter-name>
@@ -70,7 +70,7 @@
     <description></description>
     <display-name>GetSourceServlet</display-name>
     <servlet-name>GetSourceServlet</servlet-name>
-    <servlet-class>com.ryliu.j2ee.hw01.GetSourceServlet</servlet-class>
+    <servlet-class>com.ryliu.j2ee.lab01.GetSourceServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GetSourceServlet</servlet-name>

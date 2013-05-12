@@ -6,7 +6,7 @@
 <%@ include file="/include/header.jsp" %>
 </head>
 <body>
-    <jsp:forward page="/cube/show-cube.jsp">
+    <jsp:forward page="/lab01/cube/show-cube.jsp">
         <jsp:param name="value" value='<%= request.getParameter("value")%>'/>
     </jsp:forward>
 </body>

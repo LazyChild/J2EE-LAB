@@ -10,7 +10,7 @@
 <div class="container">
     <form action="cube/calc-cube.jsp">
         <fieldset>
-        <legend>计算立方</legend>
+        <legend>简单计算器</legend>
         <input type="text" name="value" placeholder="Please input value"/>
         <button type="submit" class="btn btn-primary">提交</button>
         <button type="reset" class="btn">重置</button>

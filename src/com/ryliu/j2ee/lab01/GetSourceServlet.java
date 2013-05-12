@@ -1,4 +1,4 @@
-package com.ryliu.j2ee.hw01;
+package com.ryliu.j2ee.lab01;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +43,15 @@ public class GetSourceServlet extends HttpServlet {
                 request.setAttribute("title", fileName);
             }
             InputStream inputStream = GetSourceServlet.class.getClassLoader().getResourceAsStream(url);
-            String content = IOUtils.toString(inputStream, "UTF-8");
-            if (fileName != null) {
-                content = StringEscapeUtils.escapeHtml(content);
+            if (inputStream == null) {
+                request.setAttribute("code", "No such file!");
+            } else {
+                String content = IOUtils.toString(inputStream, "UTF-8");
+                if (fileName != null) {
+                    content = StringEscapeUtils.escapeHtml(content);
+                }
+                request.setAttribute("code", content);
             }
-
-            request.setAttribute("code", content);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/show_code.jsp");
             dispatcher.forward(request, response);
         } else {

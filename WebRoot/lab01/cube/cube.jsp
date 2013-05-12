@@ -8,11 +8,12 @@
 <body>
 <%@ include file="/include/navbar.jsp" %>
 <div class="container">
-    <form action="chatroom/ChatroomLogin" method="post" class="form-signin">
+    <form action="lab01/cube/calc-cube.jsp">
         <fieldset>
-	        <legend>登录聊天室：</legend>
-	        <input type="text" name="username" placeholder="用户名"/>
-	        <button type="submit" class="btn btn-primary">登录</button>
+        <legend>计算立方</legend>
+        <input type="text" name="value" placeholder="Please input value"/>
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="reset" class="btn">重置</button>
         </fieldset>
     </form>
 </div>

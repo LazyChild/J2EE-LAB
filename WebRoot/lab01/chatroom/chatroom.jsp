@@ -38,7 +38,7 @@
                         }
                     }
                 %>
-                <form action="chatroom/ChatroomChat" method="post">
+                <form action="lab01/chatroom/ChatroomChat" method="post">
                     <input type="text" name="text" placeholder="talk here..." /> <input
                         type="hidden" name="username" value="${sessionScope.username}" />
                     <button type="submit" class="btn btn-primary">发送</button>
