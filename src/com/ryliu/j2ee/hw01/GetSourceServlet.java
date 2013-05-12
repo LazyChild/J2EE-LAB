@@ -2,12 +2,15 @@ package com.ryliu.j2ee.hw01;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
 
 /**
  * Servlet implementation class GetSourceServlet
@@ -35,15 +38,20 @@ public class GetSourceServlet extends HttpServlet {
 	    String className = request.getParameter("class");
 	    String fileName = request.getParameter("file");
 	    if (null != className && null == fileName) {
-	        URL fileURL = GetSourceServlet.class.getClassLoader().getResource(className.replace(".", File.separator) + ".java");
-	        File file = new File(fileURL.toString());
-	        System.out.println(file.getAbsolutePath());
-	        response.sendRedirect(HOST + "src/" + className.replace('.', '/') + ".java");
+	        String classPath = "src" + File.separator + className.replace(".", File.separator) + ".java";
+	        InputStream inputStream = GetSourceServlet.class.getClassLoader().getResourceAsStream(classPath);
+	        String content = IOUtils.toString(inputStream, "UTF-8");
+	        response.setContentType("text/plain;charset=UTF-8");
+	        response.getWriter().println(content);
 	    } else if (null == className && null != fileName) {
-	        response.sendRedirect(HOST + "WebRoot/" + fileName);
+	        String classPath = "WebRoot" + File.separator + fileName;
+	        InputStream inputStream = GetSourceServlet.class.getClassLoader().getResourceAsStream(classPath);
+            String content = IOUtils.toString(inputStream, "UTF-8");
+            response.setContentType("text/plain;charset=UTF-8");
+            response.getWriter().println(content);
 	    } else {
 	        response.setContentType("plain/text;charset=UTF-8");
-	        response.getWriter().println("≤Œ ˝«Î«Û¥ÌŒÛ£°");
+	        response.getWriter().println("Wrong parameters!");
 	    }
 	}
 

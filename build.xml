@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<project name="J2EE LAB" default="war" basedir=".">
+	<property name="javac.encoding" value="UTF-8" />
+
+	<property name="srcdir" value="src" />
+	<property name="libdir" value="lib" />
+	<property name="web_root" value="WebRoot" />
+	
+	<property name="build_classdir" value="build/classes" />
+	<property name="build_libdir" value="build/lib" />
+	<property name="build_dist" value="build/dist" />
+	
+	<property name="war.dist.name" value="JavaEE.war" />
+	<property name="tomcat_home" value="D:\Development\Servers\apache-tomcat-6.0.33" />
+	
+	<path id="container.libs">
+    	<fileset dir="${tomcat_home}/lib">
+    		<include name="*.jar"/>
+		</fileset>
+    </path>
+
+	<path id="distlibs">
+		<fileset dir="${libdir}">
+    		<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- webservice classpath -->
+	<path id="weblibs">
+		<path refid="distlibs" />
+		<path refid="container.libs" />
+	</path>
+	
+	<!-- compiles all web java files  -->
+	<target name="compile-web" description="compile the webapp source code">
+		<mkdir dir="${build_classdir}"/>
+		<javac destdir="${build_classdir}" debug="${debug}" verbose="${verbose}" includeAntRuntime="no" encoding="${javac.encoding}">
+			<src path="${srcdir}" />
+			<classpath refid="weblibs" />
+		</javac>
+	</target>
+	
+	<!-- copies the configuration files and filters using build.properties  -->
+	<target name="copy-resources" description="copies the configuration files to the build folder">
+		<delete dir="${web_root}/WEB-INF/classes" />
+		<mkdir dir="${web_root}/WEB-INF/classes"/>
+		<copy todir="${web_root}/WEB-INF/classes/${srcdir}" filtering="yes" overwrite="yes">
+			<fileset dir="${srcdir}"></fileset>
+		</copy>
+		<copy todir="${web_root}/WEB-INF/classes/${web_root}" filtering="yes" overwrite="yes">
+			<fileset dir="${web_root}"></fileset>
+		</copy>
+	</target>
+	
+	<!-- creates a deployable war file -->
+	<target name="war" description="creates the deployable war file" depends="compile-web, copy-resources">
+		<mkdir dir="${build_libdir}"/>
+		<mkdir dir="${build_dist}"/>
+		
+	    <copy overwrite="yes" todir="${build_libdir}" flatten="yes">
+    	   <path refid="distlibs" />
+	    </copy>
+		
+		<war destfile="${build_dist}/${war.dist.name}">
+			<classes dir="${build_classdir}" />
+			<lib dir="${build_libdir}" />
+			<fileset dir="${web_root}" />
+		</war>
+	</target>
+	
+	<target name="deploy-web" depends="war">
+        <copy todir="${tomcat_home}/webapps">
+        	<fileset dir="${build_dist}">
+        		<include name="${war.dist.name}"/>
+        	</fileset>
+        </copy>
+    </target>
+	
+	<!-- removes generated files -->
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+</project>

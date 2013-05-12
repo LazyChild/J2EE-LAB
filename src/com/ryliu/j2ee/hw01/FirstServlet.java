@@ -1,4 +1,4 @@
-﻿package com.ryliu.j2ee.hw01;
+package com.ryliu.j2ee.hw01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
