@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class RemoveControl
  */
 public class RemoveControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -19,16 +19,16 @@ public class RemoveControl extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    Good good = Good.getGoodFromRequest(request);
-	    Chart chart = Chart.getChartFromSession(request.getSession(true));
+        Good good = Good.getGoodFromRequest(request);
+        Chart chart = Chart.getChartFromSession(request.getSession(true));
 
-	    chart.removeGood(good);
-	    response.sendRedirect(request.getContextPath() + "/lab02/chart.jsp");
-	}
+        chart.removeGood(good);
+        response.sendRedirect(request.getContextPath() + "/lab02/chart.jsp");
+    }
 
 }

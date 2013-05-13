@@ -12,8 +12,8 @@ public class Convert extends TagSupport {
 
     private String value;
 
-    private final static char[] DIG = new char[] {'零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'};
-    private final static char[] UNIT = new char[] {'元', '拾', '百', '仟', '万', '亿'};
+    private final static char[] DIG = new char[] { '零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖' };
+    private final static char[] UNIT = new char[] { '元', '拾', '百', '仟', '万', '亿' };
 
     @Override
     public int doEndTag() throws JspException {
@@ -26,7 +26,6 @@ public class Convert extends TagSupport {
         return SKIP_BODY;
     }
 
-
     private static String convert(String str) {
         if (str.indexOf(".") == -1) {
             str += ".00";
@@ -37,8 +36,7 @@ public class Convert extends TagSupport {
         String money = mm[0];
 
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append(DIG[mm[1].charAt(0) - '0']).append('角').append(
-                DIG[mm[1].charAt(1) - '0']).append('分');
+        resultBuilder.append(DIG[mm[1].charAt(0) - '0']).append('角').append(DIG[mm[1].charAt(1) - '0']).append('分');
 
         int len = money.length();
         for (int i = 0; i < len; i++) {

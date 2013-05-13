@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ClearControl
  */
 public class ClearControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -19,15 +19,15 @@ public class ClearControl extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Chart chart = Chart.getChartFromSession(request.getSession(true));
 
         chart.clear();
         response.sendRedirect(request.getContextPath() + "/lab02/chart.jsp");
-	}
+    }
 
 }

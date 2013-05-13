@@ -52,7 +52,7 @@ public class Good {
         String name = request.getParameter("name");
         Double price = null;
         try {
-            price =Double.valueOf(request.getParameter("price"));
+            price = Double.valueOf(request.getParameter("price"));
         } catch (NumberFormatException e) {
             // ignore
         }
