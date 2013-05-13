@@ -47,6 +47,11 @@ public class AuthorityFilter implements Filter {
             HttpSession session = request.getSession(false);
             if (null == session || session.getAttribute("accessToken") == null
                     || !"je1124061".equals(session.getAttribute("accessToken"))) {
+                if (null != request.getQueryString()) {
+                    session.setAttribute("redirectUrl", request.getRequestURL().append('?').append(request.getQueryString()).toString());
+                } else {
+                    session.setAttribute("redirectUrl", request.getRequestURL().toString());
+                }
                 response.sendRedirect(request.getContextPath() + "/login.jsp");
             } else {
                 // pass the request along the filter chain

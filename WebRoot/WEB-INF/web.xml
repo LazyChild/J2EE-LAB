@@ -76,4 +76,54 @@
     <servlet-name>GetSourceServlet</servlet-name>
     <url-pattern>/GetSourceServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Control</display-name>
+    <servlet-name>Control</servlet-name>
+    <servlet-class>com.ryliu.j2ee.lab02.fm.action.Control</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Control</servlet-name>
+    <url-pattern>/lab02/Guess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShopControl</display-name>
+    <servlet-name>ShopControl</servlet-name>
+    <servlet-class>com.ryliu.j2ee.lab02.shop.ShopControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShopControl</servlet-name>
+    <url-pattern>/lab02/shop</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BuyControl</display-name>
+    <servlet-name>BuyControl</servlet-name>
+    <servlet-class>com.ryliu.j2ee.lab02.shop.BuyControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuyControl</servlet-name>
+    <url-pattern>/lab02/buy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveControl</display-name>
+    <servlet-name>RemoveControl</servlet-name>
+    <servlet-class>com.ryliu.j2ee.lab02.shop.RemoveControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveControl</servlet-name>
+    <url-pattern>/lab02/remove</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClearControl</display-name>
+    <servlet-name>ClearControl</servlet-name>
+    <servlet-class>com.ryliu.j2ee.lab02.shop.ClearControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClearControl</servlet-name>
+    <url-pattern>/lab02/clear</url-pattern>
+  </servlet-mapping>
 </web-app>

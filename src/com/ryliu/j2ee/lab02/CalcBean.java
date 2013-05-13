@@ -1,4 +1,4 @@
-package com.ryliu.j2ee.lab02.p01;
+package com.ryliu.j2ee.lab02;
 
 /**
  * The calculation JavaBean for simple calculator.

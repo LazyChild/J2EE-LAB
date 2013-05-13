@@ -39,7 +39,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("accessToken", USER_NAME);
             session.setMaxInactiveInterval(-1);
-            response.sendRedirect("index.jsp");
+
+            String redirectUrl = "index.jsp";
+            if (session.getAttribute("redirectUrl") != null) {
+                redirectUrl = (String) session.getAttribute("redirectUrl");
+                session.removeAttribute("rendirectUrl");
+            }
+            response.sendRedirect(redirectUrl);
         } else {
             response.sendRedirect("login.jsp?error=true");
         }

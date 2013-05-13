@@ -12,6 +12,7 @@
     <p>
     </p>
     <table class="table table-striped">
+        <tbody>
         <tr>
             <th>题号</th>
             <th>演示</th>
@@ -63,14 +64,49 @@
             <a href="GetSourceServlet?file=WEB-INF/jsp/show_code.jsp">show_code.jsp</a>
             </td>
         </tr>
+        </tbody>
+        <tbody>
         <tr>
-            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+            <th>题号</th>
+            <th>演示</th>
+            <th>源代码</th>
         </tr>
         <tr>
             <td>2.1</td>
-            <td>N/A</td>
+            <td><a href="lab02/calc.jsp">execute</a></td>
+            <td><a href="GetSourceServlet?file=lab02/calc.jsp">calc.jsp</a> | 
+            <a href="GetSourceServlet?file=lab02/result.jsp">result.jsp</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.CalcBean">result.jsp</a> 
+            </td>
+        </tr>
+        <tr>
+            <td>2.2</td>
+            <td><a href="lab02/guessnum.jsp">execute</a></td>
+            <td><a href="GetSourceServlet?file=lab02/guessnum.jsp">guessnum.jsp</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.fm.action.Control">Control.java</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.fm.service.Guessnum">Guessnum.java</a>  
+            </td>
+        </tr>
+        <tr>
+            <td>2.3</td>
+            <td><a href="lab02/shop">execute</a></td>
             <td></td>
         </tr>
+        <tr>
+            <td>2.4</td>
+            <td><a href="lab02/input.jsp">execute</a></td>
+            <td><a href="GetSourceServlet?file=lab02/input.jsp">input.jsp</a> |
+            <a href="GetSourceServlet?file=lab02/convert.jsp">convert.jsp</a> |
+            <a href="GetSourceServlet?file=WEB-INF/taglib/convertTag.tld">convertTag.tld</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.Convert">Convert.java</a>
+            </td>
+        </tr>
+        <tr>
+            <td>2.5</td>
+            <td><a href="lab02/travel.jsp">execute</a></td>
+            <td><a href="GetSourceServlet?file=lab02/travel.jsp">travel.jsp</a></td>
+        </tr>
+        </tbody>
     </table>
 </div>
 </body>

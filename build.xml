@@ -55,6 +55,7 @@
 	<!-- creates a deployable war file -->
 	<target name="war" description="creates the deployable war file" depends="compile-web, copy-resources">
 		<mkdir dir="${build_libdir}"/>
+		<delete dir="${build_dist}"/>
 		<mkdir dir="${build_dist}"/>
 		
 	    <copy overwrite="yes" todir="${build_libdir}" flatten="yes">
@@ -66,6 +67,7 @@
 			<lib dir="${build_libdir}" />
 			<fileset dir="${web_root}" />
 		</war>
+		<unwar src="${build_dist}/${war.dist.name}" dest="${build_dist}/${web_root}" />
 	</target>
 	
 	<target name="deploy-web" depends="war">
