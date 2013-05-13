@@ -44,10 +44,10 @@
 	<target name="copy-resources" description="copies the configuration files to the build folder">
 		<delete dir="${web_root}/WEB-INF/classes" />
 		<mkdir dir="${web_root}/WEB-INF/classes"/>
-		<copy todir="${web_root}/WEB-INF/classes/${srcdir}" filtering="yes" overwrite="yes">
+		<copy todir="${build_classdir}/${srcdir}" filtering="yes" overwrite="yes">
 			<fileset dir="${srcdir}"></fileset>
 		</copy>
-		<copy todir="${web_root}/WEB-INF/classes/${web_root}" filtering="yes" overwrite="yes">
+		<copy todir="${build_classdir}/${web_root}" filtering="yes" overwrite="yes">
 			<fileset dir="${web_root}"></fileset>
 		</copy>
 	</target>
