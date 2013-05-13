@@ -90,7 +90,15 @@
         <tr>
             <td>2.3</td>
             <td><a href="lab02/shop">execute</a></td>
-            <td></td>
+            <td><a href="GetSourceServlet?file=/WEB-INF/jsp/lab02/shop.jsp">shop.jsp</a> | 
+            <a href="GetSourceServlet?file=lab02/chart.jsp">chart.jsp</a> | 
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.Good">Good.java</a> | 
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.Chart">Chart.java</a> | 
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.ShopControl">ShopControl.java</a> | 
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.BuyControl">BuyControl.java</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.RemoveControl">RemoveControl.java</a> |
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.shop.ClearControl">ClearControl.java</a>  
+            </td>
         </tr>
         <tr>
             <td>2.4</td>
