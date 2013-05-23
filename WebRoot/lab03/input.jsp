@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +7,10 @@
 <body>
 <%@ include file="/include/navbar.jsp" %>
 <div class="container">
-    <form action="lab02/convert.jsp">
+    <form action="lab03/query.jsp">
         <fieldset>
-            <legend>输入阿拉伯数字</legend>
-            <input type="text" name="value" placeholder="Number"/>
+            <legend>学生姓名</legend>
+            <input type="text" name="name" placeholder="姓名"/>
             <button type="submit" class="btn btn-primary">提交</button>
         </fieldset>
     </form>

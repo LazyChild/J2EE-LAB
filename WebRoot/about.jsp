@@ -24,7 +24,7 @@
     <dt>学号</dt>
     <dd>11300240061</dd>
     <dt>当前版本号</dt>
-    <dd>LAB2</dd>
+    <dd>LAB3</dd>
 </dl>
 
 </div>
