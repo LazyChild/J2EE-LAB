@@ -28,6 +28,14 @@ public class Chart {
         goods.clear();
     }
 
+    public double getAmount() {
+        double res = 0;
+        for (Good good : goods) {
+            res += good.getPrice();
+        }
+        return res;
+    }
+
     public static Chart getChartFromSession(HttpSession session) {
         Chart chart;
         if (session.getAttribute("chart") == null) {

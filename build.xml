@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <project name="J2EE LAB" default="war" basedir=".">
 	<property name="javac.encoding" value="UTF-8" />
+    <property name="debug" value="true" />
+    <property name="verbose" value="no" />
 
 	<property name="srcdir" value="src" />
 	<property name="libdir" value="lib" />
@@ -45,10 +47,10 @@
 		<delete dir="${web_root}/WEB-INF/classes" />
 		<mkdir dir="${web_root}/WEB-INF/classes"/>
 		<copy todir="${build_classdir}/${srcdir}" filtering="yes" overwrite="yes">
-			<fileset dir="${srcdir}"></fileset>
+			<fileset dir="${srcdir}" />
 		</copy>
 		<copy todir="${build_classdir}/${web_root}" filtering="yes" overwrite="yes">
-			<fileset dir="${web_root}"></fileset>
+			<fileset dir="${web_root}"/>
 		</copy>
 	</target>
 	

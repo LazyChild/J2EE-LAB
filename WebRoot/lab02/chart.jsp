@@ -14,6 +14,7 @@
             <tbody>
             <tr>
             <th>商品名</th><th>单价</th><th>操作</th>
+            </tr>
             <c:forEach var="good" items="${chart.goods}">
             <tr>
             <td>${good.name}</td><td>${good.price}</td>
@@ -27,9 +28,9 @@
             </td>
             </tr>
             </c:forEach>
-            </tr>
             </tbody>
         </table>
+        <p>总额：${chart.amount}</p>
         <a href="lab02/shop" ><button class="btn btn-primary">返回继续购物</button></a>
         <a href="lab02/clear" ><button class="btn btn-primary">结账</button></a>
     </div>

@@ -76,7 +76,7 @@
             <td><a href="lab02/calc.jsp">execute</a></td>
             <td><a href="GetSourceServlet?file=lab02/calc.jsp">calc.jsp</a> | 
             <a href="GetSourceServlet?file=lab02/result.jsp">result.jsp</a> |
-            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.CalcBean">result.jsp</a> 
+            <a href="GetSourceServlet?class=com.ryliu.j2ee.lab02.CalcBean">CalcBean.java</a> 
             </td>
         </tr>
         <tr>
