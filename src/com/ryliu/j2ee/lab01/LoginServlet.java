@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             String redirectUrl = "index.jsp";
             if (session.getAttribute("redirectUrl") != null) {
                 redirectUrl = (String) session.getAttribute("redirectUrl");
-                session.removeAttribute("rendirectUrl");
+                session.removeAttribute("redirectUrl");
             }
             response.sendRedirect(redirectUrl);
         } else {

@@ -27,7 +27,7 @@ public class Convert extends TagSupport {
     }
 
     private static String convert(String str) {
-        if (str.indexOf(".") == -1) {
+        if (!str.contains(".")) {
             str += ".00";
         } else {
             str += "00";

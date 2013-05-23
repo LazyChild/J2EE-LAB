@@ -15,6 +15,7 @@
             <tr>
             <th>商品名</th><th>单价</th><th>操作</th>
             </tr>
+            <jsp:useBean id="chart" scope="session" type="com.ryliu.j2ee.lab02.shop.Chart"/>
             <c:forEach var="good" items="${chart.goods}">
             <tr>
             <td>${good.name}</td><td>${good.price}</td>

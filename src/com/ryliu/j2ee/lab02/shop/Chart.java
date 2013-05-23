@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 public class Chart {
 
-    private final List<Good> goods = new ArrayList<Good>();
+    private List<Good> goods = new ArrayList<Good>();
 
     private long idCount = 0;
 

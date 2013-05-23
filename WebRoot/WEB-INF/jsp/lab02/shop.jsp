@@ -14,6 +14,8 @@
             <tbody>
             <tr>
             <th>商品名</th><th>单价</th><th>操作</th>
+            </tr>
+            <jsp:useBean id="goods" scope="request" type="java.util.List"/>
             <c:forEach var="good" items="${goods}">
             <tr>
             <td>${good.name}</td><td>${good.price}</td>
@@ -27,10 +29,9 @@
             </td>
             </tr>
             </c:forEach>
-            </tr>
             </tbody>
         </table>
-        <a href="lab02/chart.jsp" ><button class="btn btn-primary">查看购物车</button></a>
+        <a href="lab02/chart.jsp"><button class="btn btn-primary">查看购物车</button></a>
     </div>
     <c:if test="${param.ok != null }">
     <script type="text/javascript">alert('商品成功加入购物车！');</script>
