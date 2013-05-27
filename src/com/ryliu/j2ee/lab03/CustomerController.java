@@ -15,10 +15,15 @@ public class CustomerController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("list") != null) {
             list(request, response);
-        } else if (request.getParameter("update") != null) {
-            update(request, response);
         } else if (request.getParameter("form") != null) {
             form(request, response);
+        }
+        response.getWriter().println("Invalid request!");
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("update") != null) {
+            update(request, response);
         }
         response.getWriter().println("Invalid request!");
     }
@@ -57,8 +62,7 @@ public class CustomerController extends HttpServlet {
             CustomerDAO dao = new CustomerDAO();
             Customer customer = Helper.getFromRequest(Customer.class, request);
             dao.update(customer);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/lab03/list.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/lab03/customer?list");
         } catch (SQLException e) {
             throw new ServletException("SQL error occurred.", e);
         }
