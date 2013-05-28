@@ -61,7 +61,7 @@
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.LoginServlet">LoginServlet.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.AuthorityFilter">AuthorityFilter.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.GetSourceServlet">GetSourceServlet.java</a> |
-                <a href="GetSourceServlet?file=WEB-INF/jsp/show_code.jsp">show_code.jsp</a>
+                <a href="GetSourceServlet?file=WEB-INF/jsp/lab01/show_code.jsp">show_code.jsp</a>
             </td>
         </tr>
         </tbody>
@@ -139,7 +139,7 @@
             <td><a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.Customer">Customer.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.AbstractDAO">AbstractDAO.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.RowCallbackHandler">RowCallbackHandler.java</a> |
-                <a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.CustomerDAO">CustomerDAO.java</a> |
+                <a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.CustomerDAO">CustomerDAO.java</a> |<br>
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.CustomerController">CustomerController.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.utils.ConnectionFactory">ConnectionFactory.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.utils.Helper">Helper.java</a> |

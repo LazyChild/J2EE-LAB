@@ -52,7 +52,7 @@ public class GetSourceServlet extends HttpServlet {
                 }
                 request.setAttribute("code", content);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/show_code.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/lab01/show_code.jsp");
             dispatcher.forward(request, response);
         } else {
             response.setContentType("plain/text;charset=UTF-8");

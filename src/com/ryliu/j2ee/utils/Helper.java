@@ -16,7 +16,7 @@ public final class Helper {
      * Get the parameter value from the HTTP servlet request.
      *
      * @param request the HTTP servlet request
-     * @param key the parameter key
+     * @param key     the parameter key
      * @return the parameter value
      */
     public static String getParameter(HttpServletRequest request, String key) {

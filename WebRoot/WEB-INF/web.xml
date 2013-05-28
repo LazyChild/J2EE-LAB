@@ -135,8 +135,16 @@
         <servlet-name>CustomerController</servlet-name>
         <servlet-class>com.ryliu.j2ee.lab03.CustomerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FileController</servlet-name>
+        <servlet-class>com.ryliu.j2ee.labfinal.controllers.FileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/lab03/customer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileController</servlet-name>
+        <url-pattern>/cloud/file</url-pattern>
     </servlet-mapping>
 </web-app>
