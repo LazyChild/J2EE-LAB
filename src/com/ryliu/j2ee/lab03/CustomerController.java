@@ -1,7 +1,5 @@
 package com.ryliu.j2ee.lab03;
 
-import com.ryliu.j2ee.utils.Helper;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +44,7 @@ public class CustomerController extends HttpServlet {
     private void insert(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             CustomerDAO dao = new CustomerDAO();
-            Customer customer = Helper.getFromRequest(Customer.class, request);
+            Customer customer = dao.generateFromRequest(request);
             dao.insert(customer);
             response.sendRedirect(request.getContextPath() + "/lab03/customer");
         } catch (SQLException e) {
@@ -108,7 +106,7 @@ public class CustomerController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             CustomerDAO dao = new CustomerDAO();
-            Customer customer = Helper.getFromRequest(Customer.class, request);
+            Customer customer = dao.generateFromRequest(request);
             dao.update(customer);
             response.sendRedirect(request.getContextPath() + "/lab03/customer");
         } catch (SQLException e) {
