@@ -1,7 +1,7 @@
 package com.ryliu.j2ee.lab03;
 
-import com.mysql.jdbc.CallableStatement;
 import com.ryliu.j2ee.utils.ConnectionFactory;
+import com.ryliu.j2ee.utils.Helper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +33,7 @@ public class CustomerDAO {
         try {
             connection = ConnectionFactory.getInstance().getConnection();
             statement = connection.prepareStatement("INSERT INTO customer_information VALUES(?, ?, ?, ?, ?)");
-            setProperties(customer);
+            Helper.setStatement(customer, statement);
             statement.executeUpdate();
         } finally {
             close();
@@ -52,8 +52,7 @@ public class CustomerDAO {
         result = null;
         try {
             connection = ConnectionFactory.getInstance().getConnection();
-            statement = connection.prepareStatement("DELETE FROM customer_information WHERE cid = ?");
-            statement.setString(1, cid);
+            statement = connection.prepareStatement("DELETE FROM customer_information WHERE cid = " + cid);
             statement.executeUpdate();
         } finally {
             close();
@@ -73,11 +72,10 @@ public class CustomerDAO {
         try {
             Customer customer = null;
             connection = ConnectionFactory.getInstance().getConnection();
-            statement = connection.prepareStatement("SELECT * FROM customer_information WHERE cid = ?");
-            statement.setString(1, cid);
+            statement = connection.prepareStatement("SELECT * FROM customer_information WHERE cid = " + cid);
             result = statement.executeQuery();
             if (result.next()) {
-                customer = getProperties();
+                customer = Helper.getResult(Customer.class, result);
             }
             return customer;
         } finally {
@@ -101,7 +99,7 @@ public class CustomerDAO {
             statement = connection.prepareStatement("SELECT * FROM customer_information");
             result = statement.executeQuery();
             while (result.next()) {
-                Customer customer = getProperties();
+                Customer customer = Helper.getResult(Customer.class, result);
                 list.add(customer);
             }
             return list;
@@ -122,31 +120,12 @@ public class CustomerDAO {
         result = null;
         try {
             connection = ConnectionFactory.getInstance().getConnection();
-            statement = connection.prepareCall("UPDATE customer_information SET cid = ?, cname = ?, phone = ?, mobile = ?, address = ? WHERE cid = ?");
-            setProperties(customer);
-            statement.setString(6, customer.getCid());
+            statement = connection.prepareCall("UPDATE customer_information SET cid = ?, cname = ?, phone = ?, mobile = ?, address = ? WHERE cid = " + customer.getCid());
+            Helper.setStatement(customer, statement);
             statement.executeUpdate();
         } finally {
             close();
         }
-    }
-
-    private void setProperties(Customer customer) throws SQLException {
-        statement.setString(1, customer.getCid());
-        statement.setString(2, customer.getCname());
-        statement.setString(3, customer.getPhone());
-        statement.setString(4, customer.getMobile());
-        statement.setString(5, customer.getAddress());
-    }
-
-    private Customer getProperties() throws SQLException {
-        Customer customer = new Customer();
-        customer.setCid(result.getString(1));
-        customer.setCname(result.getString(2));
-        customer.setPhone(result.getString(3));
-        customer.setMobile(result.getString(4));
-        customer.setAddress(result.getString(5));
-        return customer;
     }
 
     /**
@@ -161,7 +140,7 @@ public class CustomerDAO {
                 statement.close();
             }
             if (result != null) {
-                statement.close();
+                result.close();
             }
         } catch (SQLException e) {
             // ignore

@@ -24,7 +24,7 @@
             <div class="controls">
                 <c:choose>
                     <c:when test="${customer.cid == null}">
-                        <input id="cid" name="cid" type="text"/>
+                        <input id="cid" name="cid" type="text" required="required"/>
                     </c:when>
                     <c:otherwise>
                         <input id="cid" name="cid" type="text" value="${customer.cid}" readonly="readonly"/>
@@ -36,7 +36,7 @@
             <label class="control-label" for="cname">姓名</label>
 
             <div class="controls">
-                <input id="cname" name="cname" type="text" value="${customer.cname}"/>
+                <input id="cname" name="cname" type="text" value="${customer.cname}" required="required"/>
             </div>
         </div>
         <div class="control-group">

@@ -4,8 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The utility of this whole project.
+ */
 public final class Helper {
 
     private Helper() {
@@ -13,7 +17,7 @@ public final class Helper {
     }
 
     /**
-     * Create an instance of the given class from the request.
+     * Create an instance of the given class from the request by using Java reflection.
      *
      * @param klass   the class type
      * @param request the HTTP servlet request
@@ -38,6 +42,13 @@ public final class Helper {
         return result;
     }
 
+    /**
+     * Get the parameter value from the HTTP servlet request.
+     *
+     * @param request the HTTP servlet request
+     * @param key the parameter key
+     * @return the parameter value
+     */
     private static String getParameter(HttpServletRequest request, String key) {
         String result = null;
         try {
@@ -49,13 +60,20 @@ public final class Helper {
         return result;
     }
 
+    /**
+     * Set the Java bean into prepared statement by using Java reflection.
+     *
+     * @param obj the source object
+     * @param statement the prepared statement
+     * @param <T> the type of the object
+     */
     public static <T> void setStatement(T obj, PreparedStatement statement) {
         try {
             Field[] fields = obj.getClass().getDeclaredFields();
             for (int i = 0; i < fields.length; ++i) {
                 Field field = fields[i];
                 field.setAccessible(true);
-                statement.setObject(i, field.get(obj));
+                statement.setObject(i + 1, field.get(obj));
                 field.setAccessible(false);
             }
         } catch (IllegalAccessException e) {
@@ -63,5 +81,34 @@ public final class Helper {
         } catch (SQLException e) {
             // ignore
         }
+    }
+
+    /**
+     * Get the result from result set by using Java reflection.
+     *
+     * @param klass the class of the return object
+     * @param resultSet the result set
+     * @param <T> the type of the object
+     * @return the object
+     */
+    public static <T> T getResult(Class<T> klass, ResultSet resultSet) {
+        T result = null;
+        try {
+            result = klass.newInstance();
+            Field[] fields = klass.getDeclaredFields();
+            for (int i = 0; i < fields.length; ++i) {
+                Field field = fields[i];
+                field.setAccessible(true);
+                field.set(result, resultSet.getObject(i + 1));
+                field.setAccessible(false);
+            }
+        } catch (IllegalAccessException e) {
+            // ignore
+        } catch (SQLException e) {
+            // ignore
+        } catch (InstantiationException e) {
+            // ignore
+        }
+        return result;
     }
 }

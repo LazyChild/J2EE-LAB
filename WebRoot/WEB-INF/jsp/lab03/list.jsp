@@ -24,10 +24,16 @@
                 <td>${customer.phone}</td>
                 <td>${customer.mobile}</td>
                 <td>${customer.address}</td>
-                <td></td>
+                <td>
+                    <a href="lab03/customer?form&cid=${customer.cid}">修改</a> |
+                    <a href="lab03/customer?delete&cid=${customer.cid}">删除</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
+    <a href="lab03/customer?form">
+        <button class="btn btn-primary">插入</button>
+    </a>
 </div>
 </body>
 </html>

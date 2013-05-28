@@ -5,15 +5,15 @@ package com.ryliu.j2ee.lab03;
  */
 public class Customer {
 
-    public Customer() {
-        // empty
-    }
-
     private String cid;
     private String cname;
     private String phone;
     private String mobile;
     private String address;
+
+    public Customer() {
+        // empty
+    }
 
     public String getCid() {
         return cid;
