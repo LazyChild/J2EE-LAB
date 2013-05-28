@@ -51,6 +51,14 @@ public class CustomerController extends HttpServlet {
         }
     }
 
+    /**
+     * Delete the customer according to its cid.
+     *
+     * @param request the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @throws IOException if any IO error occurred.
+     * @throws ServletException if any error occurred.
+     */
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             if (request.getParameter("cid") == null) {
