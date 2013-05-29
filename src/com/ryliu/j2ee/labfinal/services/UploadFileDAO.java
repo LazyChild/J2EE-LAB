@@ -5,12 +5,16 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +22,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The upload file data access object.
+ */
 public class UploadFileDAO extends AbstractDAO<UploadFile> {
 
     /**
@@ -25,18 +32,22 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      */
     private static final long MAX_FILE_SIZE = 2097152;
 
-    /**
-     * Represents the temporary folder to restore the upload file.
-     */
-    private File repository;
+    private final ServletContext servletContext;
 
-    public void setRepository(File repository) {
-        this.repository = repository;
+    public UploadFileDAO(ServletContext servletContext) {
+        this.servletContext = servletContext;
     }
 
+    /**
+     * Get the upload file according to its id.
+     *
+     * @param id the id
+     * @return the upload file
+     * @throws SQLException if any SQL issue occurred.
+     */
     public UploadFile get(int id) throws SQLException {
         final UploadFile file = new UploadFile();
-        executeQuery("SELECT (id, file_name, upload_date, key_code) from file_upload WHERE id = " + id,
+        executeQuery("SELECT (id, file_name, upload_date, key_code) FROM file_upload WHERE id = " + id,
                 null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
@@ -47,6 +58,42 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
             }
         });
         return file;
+    }
+
+    /**
+     * Perform the download action.
+     *
+     * @param request the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @throws SQLException if any issue occurred.
+     */
+    public void download(HttpServletRequest request, final HttpServletResponse response) throws SQLException {
+        String key = request.getParameter("key");
+
+        executeQuery("SELECT file_name, content FROM file_upload WHERE key_code = '" + key + "'", null, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                try {
+                    String fileName = resultSet.getString("file_name");
+                    InputStream inputStream = resultSet.getBinaryStream("content");
+
+                    String mimeType = servletContext.getMimeType(fileName);
+                    if (mimeType == null) {
+                        mimeType = "application/octet-stream";
+                    }
+
+                    response.setContentType(mimeType);
+                    response.setContentLength(inputStream.available());
+                    String headerKey = "Content-Disposition";
+                    String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+                    response.setHeader(headerKey, headerValue);
+
+                    IOUtils.copy(inputStream, response.getOutputStream());
+                } catch (IOException e) {
+                    throw new SQLException("IO exception occurred.", e);
+                }
+            }
+        });
     }
 
     /**
@@ -61,6 +108,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
     public UploadFile generateFromRequest(HttpServletRequest request) throws ServletException, IOException {
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
+        File repository  =(File) servletContext.getAttribute("javax.servlet.context.tempdir");
         factory.setRepository(repository);
         factory.setSizeThreshold(4096);
 
@@ -104,6 +152,6 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      * @return the key
      */
     private static String generateKey() {
-        return RandomStringUtils.random(7, true, true).toUpperCase();
+        return RandomStringUtils.random(10, true, true).toUpperCase();
     }
 }
