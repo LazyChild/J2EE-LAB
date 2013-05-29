@@ -5,10 +5,7 @@ import com.ryliu.j2ee.utils.ConnectionFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * The abstract DAO class.
@@ -27,21 +24,27 @@ public abstract class AbstractDAO<T> {
      * Execute the update SQL.
      *
      * @param sql the sql
-     * @param params the parameters
+     * @param setter the setter
      * @return the count
      * @throws SQLException if any issue occurred.
      */
-    protected int executeUpdate(String sql, Object[] params) throws SQLException {
+    protected int executeUpdate(String sql, StatementSetter setter) throws SQLException {
         connection = null;
         statement = null;
         result = null;
         try {
             connection = ConnectionFactory.getInstance().getConnection();
-            statement = connection.prepareStatement(sql);
-            for (int i = 0; i < params.length; ++i) {
-                statement.setObject(i + 1, params[i]);
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            if (setter != null) {
+                setter.setValues(statement);
             }
-            return statement.executeUpdate();
+            statement.executeUpdate();
+            ResultSet key = statement.getGeneratedKeys();
+            if (key.next()) {
+                return key.getInt(1);
+            } else {
+                return 0;
+            }
         } finally {
             close();
         }
@@ -51,19 +54,19 @@ public abstract class AbstractDAO<T> {
      * Execute the query sql.
      *
      * @param sql the sql
-     * @param params the parameters
+     * @param setter the statement setter
      * @param handler the callback handler
      * @throws SQLException if any issue occurred.
      */
-    protected void executeQuery(String sql, Object[] params, RowCallbackHandler handler)  throws SQLException {
+    protected void executeQuery(String sql, StatementSetter setter, RowCallbackHandler handler)  throws SQLException {
         connection = null;
         statement = null;
         result = null;
         try {
             connection = ConnectionFactory.getInstance().getConnection();
             statement = connection.prepareStatement(sql);
-            for (int i = 0; i < params.length; ++i) {
-                statement.setObject(i + 1, params[i]);
+            if (setter != null) {
+                setter.setValues(statement);
             }
             result = statement.executeQuery();
             while (result.next()) {

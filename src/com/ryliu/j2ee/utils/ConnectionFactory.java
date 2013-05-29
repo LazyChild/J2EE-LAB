@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
     private static final String CLASS = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://10.12.8.28:3306/je1124061";
+    private static final String URL = "jdbc:mysql://10.12.8.28:3306/je1124061?useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "je1124061";
     private static final String PASSWORD = "283245";
 

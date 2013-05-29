@@ -2,9 +2,11 @@ package com.ryliu.j2ee.lab03;
 
 import com.ryliu.j2ee.labfinal.services.AbstractDAO;
 import com.ryliu.j2ee.labfinal.services.RowCallbackHandler;
+import com.ryliu.j2ee.labfinal.services.StatementSetter;
 import com.ryliu.j2ee.utils.Helper;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,9 +20,19 @@ public class CustomerDAO extends AbstractDAO<Customer> {
      * @param customer the element
      * @throws SQLException if any SQL error occurred.
      */
-    public void insert(Customer customer) throws SQLException {
+    public void insert(final Customer customer) throws SQLException {
         String sql = "INSERT INTO customer_information VALUES(?, ?, ?, ?, ?)";
-        executeUpdate(sql, new Object[]{customer.getCid(), customer.getCname(), customer.getPhone(), customer.getMobile(), customer.getAddress()});
+        executeUpdate(sql, new StatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                int index = 0;
+                ps.setString(++index, customer.getCid());
+                ps.setString(++index, customer.getCname());
+                ps.setString(++index, customer.getPhone());
+                ps.setString(++index, customer.getMobile());
+                ps.setString(++index, customer.getAddress());
+            }
+        });
     }
 
     /**
@@ -30,8 +42,8 @@ public class CustomerDAO extends AbstractDAO<Customer> {
      * @throws SQLException if any SQL error occurred.
      */
     public void delete(String cid) throws SQLException {
-        String sql = "DELETE FROM customer_information WHERE cid = ?";
-        executeUpdate(sql, new Object[] {cid});
+        String sql = "DELETE FROM customer_information WHERE cid = " + cid;
+        executeUpdate(sql, null);
     }
 
     /**
@@ -41,15 +53,15 @@ public class CustomerDAO extends AbstractDAO<Customer> {
      * @throws SQLException if any SQL error occurred.
      */
     public Customer get(String cid) throws SQLException {
-        final Customer[] customer = {null};
-        String sql = "SELECT * FROM customer_information WHERE cid = ?";
-        executeQuery(sql, new Object[] {cid}, new RowCallbackHandler() {
+        final Customer customer = new Customer();
+        String sql = "SELECT * FROM customer_information WHERE cid = " + cid;
+        executeQuery(sql, null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
-                customer[0] = generateFromResult(resultSet);
+                generateFromResult(customer, resultSet);
             }
         });
-        return customer[0];
+        return customer;
     }
 
     /**
@@ -61,10 +73,11 @@ public class CustomerDAO extends AbstractDAO<Customer> {
     public List<Customer> list() throws SQLException {
         final List<Customer> list = new ArrayList<Customer>();
         String sql = "SELECT * FROM customer_information";
-        executeQuery(sql, new Object[]{}, new RowCallbackHandler() {
+        executeQuery(sql, null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
-                Customer customer = generateFromResult(resultSet);
+                Customer customer = new Customer();
+                generateFromResult(customer, resultSet);
                 list.add(customer);
             }
         });
@@ -77,26 +90,34 @@ public class CustomerDAO extends AbstractDAO<Customer> {
      * @param customer the customer to update
      * @throws SQLException if any SQL error occurred.
      */
-    public void update(Customer customer) throws SQLException {
+    public void update(final Customer customer) throws SQLException {
         String sql = "UPDATE customer_information SET cname = ?, phone = ?, mobile = ?, address = ? WHERE cid = ?";
-        executeUpdate(sql, new Object[]{customer.getCname(), customer.getPhone(), customer.getMobile(), customer.getAddress(), customer.getCid()});
+        executeUpdate(sql, new StatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                int index = 0;
+                ps.setString(++index, customer.getCname());
+                ps.setString(++index, customer.getPhone());
+                ps.setString(++index, customer.getMobile());
+                ps.setString(++index, customer.getAddress());
+                ps.setString(++index, customer.getCid());
+            }
+        });
     }
 
     /**
      * Generate from result set.
      *
      * @param resultSet the result set
-     * @return the instance
+     * @param customer the customer
      * @throws SQLException if any issue occurred.
      */
-    private static Customer generateFromResult(ResultSet resultSet) throws SQLException {
-        Customer customer = new Customer();
+    private static void generateFromResult(Customer customer, ResultSet resultSet) throws SQLException {
         customer.setCid(resultSet.getString("cid"));
         customer.setCname(resultSet.getString("cname"));
         customer.setPhone(resultSet.getString("phone"));
         customer.setMobile(resultSet.getString("mobile"));
         customer.setAddress(resultSet.getString("address"));
-        return customer;
     }
 
     /**
