@@ -7,6 +7,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,9 +30,9 @@ import java.util.List;
 public class UploadFileDAO extends AbstractDAO<UploadFile> {
 
     /**
-     * Represents the max file size allowed to upload. (Default 2MB)
+     * Represents the max file size allowed to upload. (Default 1MB)
      */
-    private static final long MAX_FILE_SIZE = 2097152;
+    private static final long MAX_FILE_SIZE = 1048576;
 
     private final ServletContext servletContext;
 
@@ -47,7 +49,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      */
     public UploadFile get(int id) throws SQLException {
         final UploadFile file = new UploadFile();
-        executeQuery("SELECT (id, file_name, upload_date, key_code) FROM file_upload WHERE id = " + id,
+        executeQuery("SELECT id, file_name, upload_date, key_code FROM file_upload WHERE id = " + id,
                 null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
@@ -85,7 +87,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
                     response.setContentType(mimeType);
                     response.setContentLength(inputStream.available());
                     String headerKey = "Content-Disposition";
-                    String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+                    String headerValue = String.format("attachment; filename=\"%s\"", URLEncoder.encode(fileName, "UTF-8"));
                     response.setHeader(headerKey, headerValue);
 
                     IOUtils.copy(inputStream, response.getOutputStream());

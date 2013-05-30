@@ -4,8 +4,10 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/cloud/";
 %>
 <meta charset="UTF-8">
-<title>iDisk - 复旦云盘</title>
+<title>FDisk - 复旦云</title>
 <base href="<%=basePath%>">
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/cloud.css" rel="stylesheet" media="screen">
 <script src="js/jquery-1.10.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/cloud.js"></script>

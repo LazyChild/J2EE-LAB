@@ -1,5 +1,6 @@
 package com.ryliu.j2ee.labfinal.controllers;
 
+import com.ryliu.j2ee.labfinal.models.UploadFile;
 import com.ryliu.j2ee.labfinal.services.UploadFileDAO;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,11 @@ import java.sql.SQLException;
 public class FileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UploadFileDAO dao = new UploadFileDAO(getServletContext());
-        dao.generateFromRequest(request);
+        UploadFile file = dao.generateFromRequest(request);
+        request.setAttribute("file", file);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/labfinal/upload.jsp");
+        dispatcher.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
