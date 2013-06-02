@@ -1,6 +1,7 @@
 package com.ryliu.j2ee.labfinal.services;
 
 import com.ryliu.j2ee.labfinal.models.UploadFile;
+import com.ryliu.j2ee.labfinal.models.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -13,6 +14,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,14 +52,16 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      */
     public UploadFile get(int id) throws SQLException {
         final UploadFile file = new UploadFile();
-        executeQuery("SELECT id, file_name, upload_date, key_code FROM file_upload WHERE id = " + id,
+        executeQuery("SELECT * FROM file_upload WHERE id = " + id,
                 null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
                 file.setId(resultSet.getInt("id"));
                 file.setFileName(resultSet.getString("file_name"));
+                file.setFileSize(resultSet.getLong("file_size"));
                 file.setUploadDate(resultSet.getDate("upload_date"));
                 file.setKeyCode(resultSet.getString("key_code"));
+                file.setOwnerId(resultSet.getInt("owner_id"));
             }
         });
         return file;
@@ -123,12 +128,13 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
             int id = 0;
             for (final FileItem item : items) {
                 if (!item.isFormField()) {
-                    id = executeUpdate("INSERT INTO file_upload (file_name, content, upload_date, key_code) VALUES (?, ?, ?, ?)", new StatementSetter() {
+                    id = executeUpdate("INSERT INTO file_upload (file_name, file_size, content, upload_date, key_code) VALUES (?, ?, ?, ?, ?)", new StatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps) throws SQLException {
                             try {
                                 int index = 0;
                                 ps.setString(++index, item.getName());
+                                ps.setLong(++index, item.getSize());
                                 ps.setBinaryStream(++index, item.getInputStream(), item.getSize());
                                 ps.setTimestamp(++index, new Timestamp(new Date().getTime()));
                                 ps.setString(++index, generateKey());
@@ -140,10 +146,74 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
                     break;
                 }
             }
-            return id == 0 ? null : get(id);
+            if (id == 0) return null;
+            UploadFile file = get(id);
+            HttpSession session = request.getSession(true);
+            User user = (User) session.getAttribute("user");
+            if (user != null) {
+                executeUpdate("UPDATE file_upload SET owner_id = " + user.getId() + " WHERE id = " + id, null);
+            }
+            return file;
         } catch (FileUploadException e) {
             throw new SQLException("Error while upload file.", e);
         }
+    }
+
+    /**
+     * Get the list according to the owner id.
+     *
+     * @param ownerId the owner id
+     * @return the list of files
+     * @throws SQLException if any SQL issue occurred.
+     */
+    public List<UploadFile> list(int ownerId) throws SQLException {
+        final List<UploadFile> list = new ArrayList<UploadFile>();
+        executeQuery("SELECT * FROM file_upload WHERE owner_id = " + ownerId + " ORDER BY id", null, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                UploadFile file = new UploadFile();
+                file.setId(resultSet.getInt("id"));
+                file.setFileName(resultSet.getString("file_name"));
+                file.setFileSize(resultSet.getLong("file_size"));
+                file.setKeyCode(resultSet.getString("key_code"));
+                file.setUploadDate(resultSet.getDate("upload_date"));
+                list.add(file);
+            }
+        });
+        return list;
+    }
+
+    /**
+     * Get all files.
+     *
+     * @return the list of files
+     * @throws SQLException if any SQL issue occurred.
+     */
+    public List<UploadFile> listAll() throws SQLException {
+        final List<UploadFile> list = new ArrayList<UploadFile>();
+        executeQuery("SELECT * FROM file_upload ORDER BY id", null, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                UploadFile file = new UploadFile();
+                file.setId(resultSet.getInt("id"));
+                file.setFileName(resultSet.getString("file_name"));
+                file.setFileSize(resultSet.getLong("file_size"));
+                file.setKeyCode(resultSet.getString("key_code"));
+                file.setUploadDate(resultSet.getDate("upload_date"));
+                list.add(file);
+            }
+        });
+        return list;
+    }
+
+    /**
+     * Delete the file according to its id.
+     *
+     * @param id the file id
+     * @throws SQLException if any issue occurred.
+     */
+    public void delete(int id) throws SQLException {
+        executeUpdate("DELETE FROM file_upload WHERE id = " + id, null);
     }
 
     /**

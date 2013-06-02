@@ -8,6 +8,8 @@ import java.util.Date;
 public class UploadFile {
     private int id;
     private String fileName;
+    private Long fileSize;
+    private Integer ownerId;
     private Date uploadDate;
     private String keyCode;
 
@@ -41,5 +43,21 @@ public class UploadFile {
 
     public void setKeyCode(String keyCode) {
         this.keyCode = keyCode;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 }
