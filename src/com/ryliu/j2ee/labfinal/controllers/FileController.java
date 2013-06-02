@@ -17,33 +17,26 @@ import java.sql.SQLException;
  */
 public class FileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UploadFileDAO dao = new UploadFileDAO(getServletContext());
-        UploadFile file = dao.generateFromRequest(request);
-        request.setAttribute("file", file);
+        try {
+            UploadFileDAO dao = new UploadFileDAO(getServletContext());
+            UploadFile file = dao.generateFromRequest(request);
+            request.setAttribute("file", file);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/labfinal/upload.jsp");
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/labfinal/upload.jsp");
+            dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            request.setAttribute("message", "文件过大！");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/labfinal/message.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("download") != null) {
             download(request, response);
         } else {
-            index(request, response);
+            response.sendRedirect(request.getContextPath() + "/cloud");
         }
-    }
-
-    /**
-     * Render the index page.
-     *
-     * @param request the HTTP servlet request
-     * @param response the HTTP servlet response
-     * @throws ServletException if any issue occurred
-     * @throws IOException if any IO issue occurred.
-     */
-    private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/labfinal/index.jsp");
-        dispatcher.forward(request, response);
     }
 
     /**

@@ -13,7 +13,7 @@ import java.sql.*;
  * @param <T> the type
  */
 public abstract class AbstractDAO<T> {
-    public abstract T generateFromRequest(HttpServletRequest request) throws ServletException, IOException;
+    public abstract T generateFromRequest(HttpServletRequest request) throws SQLException, IOException;
 
     private Connection connection;
     private PreparedStatement statement;

@@ -5,8 +5,20 @@
     <%@ include file="include/header.jsp" %>
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/labfinal/include/navbar.jsp" flush="true">
+    <jsp:param name="active" value="index"/>
+</jsp:include>
 <div class="container">
-    ${message}
+    <div class="row">
+        <div class="span6 offset3 well">
+            <div class="alert alert-error">
+                <button class="close">&times;</button>
+                <strong>
+                    ${message}
+                </strong>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

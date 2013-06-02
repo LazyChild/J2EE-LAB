@@ -157,7 +157,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FileController</servlet-name>
-        <url-pattern>/cloud/index</url-pattern>
+        <url-pattern>/cloud/file</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>

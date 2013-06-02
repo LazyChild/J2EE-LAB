@@ -5,7 +5,9 @@
     <%@ include file="include/header.jsp" %>
 </head>
 <body>
-<%@ include file="include/navbar.jsp" %>
+<jsp:include page="/WEB-INF/jsp/labfinal/include/navbar.jsp" flush="true">
+    <jsp:param name="active" value="index"/>
+</jsp:include>
 <div class="container">
     <div class="row">
         <div class="span6 offset3 well">
@@ -17,7 +19,7 @@
             <h2 id="key">
                 <code>${file.keyCode}</code>
             </h2>
-            <p>可以访问 <a href="index?download&key=${file.keyCode}">http://~?download&key=${file.keyCode}</a>来下载该文件。</p>
+            <p>可以访问 <a href="file?download&key=${file.keyCode}">http://~?download&key=${file.keyCode}</a>来下载该文件。</p>
             <a class="btn btn-primary pull-right" href="javascript:history.back();">返回</a>
         </div>
     </div>

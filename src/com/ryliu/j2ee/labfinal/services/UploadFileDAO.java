@@ -107,7 +107,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      * @throws IOException      if any IO issue occurred.
      */
     @Override
-    public UploadFile generateFromRequest(HttpServletRequest request) throws ServletException, IOException {
+    public UploadFile generateFromRequest(HttpServletRequest request) throws SQLException, IOException {
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
         File repository  =(File) servletContext.getAttribute("javax.servlet.context.tempdir");
@@ -142,9 +142,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
             }
             return id == 0 ? null : get(id);
         } catch (FileUploadException e) {
-            throw new ServletException("Error while upload file.", e);
-        } catch (SQLException e) {
-            throw new ServletException("SQL error occurred.", e);
+            throw new SQLException("Error while upload file.", e);
         }
     }
 
