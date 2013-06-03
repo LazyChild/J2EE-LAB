@@ -1,17 +1,15 @@
 package com.ryliu.j2ee.labfinal.controllers;
 
+import com.ryliu.j2ee.labfinal.models.Role;
 import com.ryliu.j2ee.labfinal.models.UploadFile;
 import com.ryliu.j2ee.labfinal.models.User;
 import com.ryliu.j2ee.labfinal.services.UploadFileDAO;
-import com.ryliu.j2ee.labfinal.services.UserDAO;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -51,7 +49,7 @@ public class FileController extends HttpServlet {
             UploadFileDAO dao = new UploadFileDAO(getServletContext());
             List<UploadFile> list = dao.listAll();
             request.setAttribute("list", list);
-            Long sum = Long.valueOf(0);
+            Long sum = 0L;
             for (UploadFile file : list) {
                 sum += file.getFileSize();
             }
@@ -77,12 +75,12 @@ public class FileController extends HttpServlet {
             UploadFileDAO dao = new UploadFileDAO(getServletContext());
             Integer id = Integer.valueOf(request.getParameter("id"));
             UploadFile file = dao.get(id);
-            if (file.getOwnerId() != user.getId()) {
+            if (user.getRole() != Role.ADMIN && file.getOwnerId() != user.getId()) {
                 request.setAttribute("message", "你没有权限删除该文件！");
                 request.getRequestDispatcher("/WEB-INF/jsp/labfinal/message.jsp").forward(request, response);
             } else {
                 dao.delete(id);
-                response.sendRedirect(request.getContextPath() + "/cloud/file?list");
+                response.sendRedirect(request.getHeader("Referer"));
             }
         } catch (SQLException e) {
             throw new ServletException("SQL issue occurred.", e);
@@ -120,7 +118,7 @@ public class FileController extends HttpServlet {
             User user = (User) session.getAttribute("user");
             List<UploadFile> list = dao.list(user.getId());
             request.setAttribute("list", list);
-            Long sum = Long.valueOf(0);
+            Long sum = 0L;
             for (UploadFile file : list) {
                 sum += file.getFileSize();
             }

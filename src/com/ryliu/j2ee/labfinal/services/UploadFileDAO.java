@@ -8,7 +8,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -101,6 +100,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
                 }
             }
         });
+        executeUpdate("UPDATE file_upload SET download_time = download_time + 1 WHERE key_code = '" + key + "'", null);
     }
 
     /**
@@ -108,7 +108,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      *
      * @param request the HTTP servlet request
      * @return the upload file
-     * @throws ServletException if any issue occurred.
+     * @throws SQLException if any issue occurred.
      * @throws IOException      if any IO issue occurred.
      */
     @Override
@@ -128,7 +128,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
             int id = 0;
             for (final FileItem item : items) {
                 if (!item.isFormField()) {
-                    id = executeUpdate("INSERT INTO file_upload (file_name, file_size, content, upload_date, key_code) VALUES (?, ?, ?, ?, ?)", new StatementSetter() {
+                    id = executeUpdate("INSERT INTO file_upload (file_name, file_size, content, upload_date, key_code, download_time) VALUES (?, ?, ?, ?, ?, 0)", new StatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps) throws SQLException {
                             try {
@@ -177,6 +177,7 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
                 file.setFileSize(resultSet.getLong("file_size"));
                 file.setKeyCode(resultSet.getString("key_code"));
                 file.setUploadDate(resultSet.getDate("upload_date"));
+                file.setDownloadTime(resultSet.getInt("download_time"));
                 list.add(file);
             }
         });
@@ -191,15 +192,18 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
      */
     public List<UploadFile> listAll() throws SQLException {
         final List<UploadFile> list = new ArrayList<UploadFile>();
-        executeQuery("SELECT * FROM file_upload ORDER BY id", null, new RowCallbackHandler() {
+        executeQuery("SELECT f.id, file_name, name, file_size, key_code, upload_date, download_time FROM " +
+                "file_upload f LEFT JOIN user u ON owner_id = u.id ORDER BY f.id", null, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
                 UploadFile file = new UploadFile();
                 file.setId(resultSet.getInt("id"));
                 file.setFileName(resultSet.getString("file_name"));
+                file.setOwnerName(resultSet.getString("name"));
                 file.setFileSize(resultSet.getLong("file_size"));
                 file.setKeyCode(resultSet.getString("key_code"));
                 file.setUploadDate(resultSet.getDate("upload_date"));
+                file.setDownloadTime(resultSet.getInt("download_time"));
                 list.add(file);
             }
         });

@@ -7,7 +7,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/labfinal/include/navbar.jsp" flush="true">
-    <jsp:param name="active" value="list"/>
+    <jsp:param name="active" value="manage"/>
 </jsp:include>
 <div class="container">
     <div class="row">
@@ -28,6 +28,16 @@
                         <td><a href="file?download&key=${file.keyCode}">${file.fileName}</a></td>
                         <td>
                             <c:choose>
+                                <c:when test="${file.ownerName != null}">
+                                    ${file.ownerName}
+                                </c:when>
+                                <c:otherwise>
+                                    匿名用户
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
                                 <c:when test="${file.fileSize < 1024}">
                                     ${file.fileSize}B
                                 </c:when>
@@ -37,6 +47,7 @@
                             </c:choose>
                         </td>
                         <td>${file.uploadDate}</td>
+                        <td>${file.downloadTime}</td>
                         <td>
                             <a href="file?delete&id=${file.id}" type="button" class="btn btn-info"
                                onclick='return confirm("你确认要删除这个文件吗？");'>删除</a>

@@ -35,6 +35,9 @@ public class CloudAuthorityFilter implements Filter {
                 if (request.getParameter("list") != null) {
                     failed = true;
                 }
+                if (request.getParameter("manage") != null) {
+                    failed = true;
+                }
             } else if (user.getRole() != Role.ADMIN) {
                 if (request.getParameter("manage") != null) {
                     failed = true;
