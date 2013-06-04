@@ -9,6 +9,19 @@
 <jsp:include page="/WEB-INF/jsp/labfinal/include/navbar.jsp" flush="true">
     <jsp:param name="active" value="list"/>
 </jsp:include>
+<div class="modal hide fade" id="print-modal" tabindex="-1">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+
+        <h3>打印文档</h3>
+    </div>
+    <div class="modal-body">
+        打印文档将配送到：${sessionScope.user.name} - ${sessionScope.user.address}
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">确定</button>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="span10 offset1 well">
@@ -38,7 +51,7 @@
                         <td>${file.uploadDate}</td>
                         <td><code>${file.keyCode}</code></td>
                         <td>
-                            <a href="file?print&id=${file.id}" type="button" class="btn btn-info">打印</a>
+                            <a type="button" class="btn btn-info" data-toggle="modal" href="#print-modal">打印</a>
                             <a href="file?delete&id=${file.id}" type="button" class="btn"
                                onclick='return confirm("你确认要删除这个文件吗？");'>删除</a>
                         </td>
