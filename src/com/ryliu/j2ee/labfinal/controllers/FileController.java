@@ -4,6 +4,7 @@ import com.ryliu.j2ee.labfinal.models.Role;
 import com.ryliu.j2ee.labfinal.models.UploadFile;
 import com.ryliu.j2ee.labfinal.models.User;
 import com.ryliu.j2ee.labfinal.services.UploadFileDAO;
+import com.ryliu.j2ee.utils.Helper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,10 +45,23 @@ public class FileController extends HttpServlet {
         }
     }
 
+    /**
+     * Perform the manage action
+     *
+     * @param request the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @throws ServletException if any issue occurred.
+     * @throws IOException if any IO issue occurred.
+     */
     private void manage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             UploadFileDAO dao = new UploadFileDAO(getServletContext());
-            List<UploadFile> list = dao.listAll();
+            List<UploadFile> list = null;
+            if (request.getParameter("name") != null) {
+                list = dao.search(Helper.getParameter(request, "name"));
+            } else {
+                list = dao.listAll();
+            }
             request.setAttribute("list", list);
             Long sum = 0L;
             for (UploadFile file : list) {

@@ -70,6 +70,11 @@
                     </c:choose>
                 </strong>
             </div>
+            <form class="form-search">
+                <input type="hidden" name="manage"/>
+                <input type="text" class="input-medium search-query" name="name" placeholder="文件名"/>
+                <button type="submit" class="btn">搜索</button>
+            </form>
         </div>
     </div>
 </div>

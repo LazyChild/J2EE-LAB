@@ -211,6 +211,32 @@ public class UploadFileDAO extends AbstractDAO<UploadFile> {
     }
 
     /**
+     * Get all files.
+     *
+     * @return the list of files
+     * @throws SQLException if any SQL issue occurred.
+     */
+    public List<UploadFile> search(String name) throws SQLException {
+        final List<UploadFile> list = new ArrayList<UploadFile>();
+        executeQuery("SELECT f.id, file_name, name, file_size, key_code, upload_date, download_time FROM " +
+                "file_upload f LEFT JOIN user u ON owner_id = u.id WHERE file_name LIKE '%" + name + "%' ORDER BY f.id", null, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                UploadFile file = new UploadFile();
+                file.setId(resultSet.getInt("id"));
+                file.setFileName(resultSet.getString("file_name"));
+                file.setOwnerName(resultSet.getString("name"));
+                file.setFileSize(resultSet.getLong("file_size"));
+                file.setKeyCode(resultSet.getString("key_code"));
+                file.setUploadDate(resultSet.getDate("upload_date"));
+                file.setDownloadTime(resultSet.getInt("download_time"));
+                list.add(file);
+            }
+        });
+        return list;
+    }
+
+    /**
      * Delete the file according to its id.
      *
      * @param id the file id

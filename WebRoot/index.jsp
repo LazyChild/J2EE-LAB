@@ -10,9 +10,6 @@
 <div class="container">
     <h1>JavaEE Lab</h1>
 
-    <div class="alert alert-info">
-        <a href="cloud">点击此链接访问期末大作业：<strong>复旦云</strong></a>
-    </div>
     <p>
     </p>
     <table class="table table-striped">
@@ -154,6 +151,42 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="alert alert-info">
+        点击此链接访问期末大作业：<a href="cloud"><strong>复旦云</strong></a>
+
+
+        <h5>Models:</h5>
+        <ul class="inline">
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.models.User">User.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.models.Role">Role.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.models.UploadFile">UploadFile.java</a></li>
+        </ul>
+        <h5>Services:</h5>
+        <ul class="inline">
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.AbstractDAO">AbstractDAO.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.RowCallbackHandler">RowCallbackHandler.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.StatementSetter">StatementSetter.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.UserDAO">UserDAO.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.UploadFileDAO">UploadFileDAO.java</a></li>
+        </ul>
+        <h5>Controllers:</h5>
+        <ul class="inline">
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.CloudAuthorityFilterr">CloudAuthorityFilterr.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.UserController">UserController.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.FileController">FileController.java</a></li>
+        </ul>
+        <h5>Views:</h5>
+        <ul class="inline">
+            <li><a href="GetSourceServlet?file=/cloud/index.jsp">index.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/cloud/login.jsp">login.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/cloud/register.jsp">register.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/WEB-INF/jsp/labfinal/edit.jsp">edit.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/WEB-INF/jsp/labfinal/upload.jsp">upload.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/WEB-INF/jsp/labfinal/list.jsp">list.jsp</a></li>
+            <li><a href="GetSourceServlet?file=/WEB-INF/jsp/labfinal/manage.jsp">manage.jsp</a></li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
