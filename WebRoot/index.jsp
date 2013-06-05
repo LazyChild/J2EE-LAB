@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/header.jsp" %>
+    <%@ include file="/include/header.jsp" %>
 </head>
 <body>
 <%@ include file="/include/navbar.jsp" %>
 <div class="container">
     <h1>JavaEE Lab</h1>
+
+    <div class="alert alert-info">
+        <a href="cloud">点击此链接访问期末大作业：<strong>复旦云</strong></a>
+    </div>
     <p>
     </p>
     <table class="table table-striped">
@@ -52,7 +56,8 @@
             <td><a href="GetSourceServlet?file=lab01/chatroom/login.jsp">login.jsp</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.chatroom.ChatroomLogin">ChatroomLogin.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.chatroom.ChatroomChat">ChatroomChat.java</a> |
-                <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.chatroom.MySessionListener">MySessionListener.java</a></td>
+                <a href="GetSourceServlet?class=com.ryliu.j2ee.lab01.chatroom.MySessionListener">MySessionListener.java</a>
+            </td>
         </tr>
         <tr>
             <td>1.7</td>
@@ -138,7 +143,8 @@
             <td><a href="lab03/customer">execute</a></td>
             <td><a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.Customer">Customer.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.AbstractDAO">AbstractDAO.java</a> |
-                <a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.RowCallbackHandler">RowCallbackHandler.java</a> |
+                <a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.services.RowCallbackHandler">RowCallbackHandler.java</a>
+                |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.CustomerDAO">CustomerDAO.java</a> |<br>
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.lab03.CustomerController">CustomerController.java</a> |
                 <a href="GetSourceServlet?class=com.ryliu.j2ee.utils.ConnectionFactory">ConnectionFactory.java</a> |

@@ -47,6 +47,15 @@
         </form>
     </div>
     <div class="row">
+        <div class="span8 offset2 alert alert-info">
+            <button class="close">&times;</button>
+            <p>管理员账户：<strong>admin@fdisk.com</strong> | 密码：<strong>admin</strong></p>
+            <p>普通账户：<strong>lyf@fdisk.com</strong> | 密码：<strong>lyf</strong></p>
+            <hr>
+            <p class="pull-right"><a href="document.pdf"><strong>下载文档</strong></a></p>
+        </div>
+    </div>
+    <div class="row">
         <div class="span8 offset2 well">
             <h3>FDisk - 复旦云</h3>
             <br>
