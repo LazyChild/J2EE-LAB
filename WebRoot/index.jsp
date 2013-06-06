@@ -172,7 +172,7 @@
         </ul>
         <h5>Controllers:</h5>
         <ul class="inline">
-            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.CloudAuthorityFilterr">CloudAuthorityFilterr.java</a></li>
+            <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.CloudAuthorityFilter">CloudAuthorityFilterr.java</a></li>
             <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.UserController">UserController.java</a></li>
             <li><a href="GetSourceServlet?class=com.ryliu.j2ee.labfinal.controllers.FileController">FileController.java</a></li>
         </ul>
